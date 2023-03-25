@@ -5,13 +5,16 @@ import fastify from 'fastify'
 const app = fastify()
 
 app.post('/message', (req, res) => {
-  //   console.log('/message:', JSON.stringify(req.body))
-  const { fromPhone, message } = req.body as {
-    fromPhone: string
+  // console.log('/message:', JSON.stringify(req.body))
+  const { message, sourceNumber, groupId } = req.body as {
+    sourceNumber: string
+    sourceName: string
     message: string
+    groupId?: string
   }
   axios.post('http://localhost:9460/send', {
-    to: fromPhone,
+    to: sourceNumber,
+    toGroup: groupId,
     message,
   })
   res.send('OK')
