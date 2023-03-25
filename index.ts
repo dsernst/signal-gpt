@@ -30,7 +30,7 @@ app.post('/message', (req, res) => {
   const commands = getCommands()
   let match = false
   commands.forEach((command) => {
-    if (message.startsWith(command)) {
+    if (message.toLocaleLowerCase().startsWith(command)) {
       if (match) return // Don't double trigger (eg /gpt and /g aliases)
 
       match = true
