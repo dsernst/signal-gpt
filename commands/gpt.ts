@@ -11,7 +11,7 @@ export default async (message: string) => {
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: query }],
+      messages: [{ role: 'user', content: query || '' }],
     })
     const response = completion.data.choices[0].message?.content
     return response
