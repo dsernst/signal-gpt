@@ -24,7 +24,7 @@ app.post('/message', (req, res) => {
   }
 
   // Parse the incoming messages
-  const { message, sourceNumber, groupId } = req.body as Message
+  const { message, sourceNumber, sourceName, groupId } = req.body as Message
 
   // Check if message matches one of the available commands
   const commands = getCommands()
@@ -44,6 +44,7 @@ app.post('/message', (req, res) => {
         const result = (await module.default(
           message,
           sourceNumber,
+          sourceName,
           groupId
         )) as string
         respond(result, sourceNumber, groupId)
