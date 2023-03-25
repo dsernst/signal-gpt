@@ -2,6 +2,7 @@ import 'signal-http'
 import fs from 'fs'
 import axios from 'axios'
 import fastify from 'fastify'
+import './logToFile.js'
 
 const app = fastify()
 
