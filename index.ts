@@ -33,13 +33,14 @@ app.post('/message', (req, res) => {
       match = true
 
       // Run the matching command
-      import(`./commands/${command.slice(1)}`).then((module) =>
-        respond(
-          module.default(message, sourceNumber, groupId) as string,
+      import(`./commands/${command.slice(1)}`).then(async (module) => {
+        const result = (await module.default(
+          message,
           sourceNumber,
           groupId
-        )
-      )
+        )) as string
+        respond(result, sourceNumber, groupId)
+      })
     }
   })
   if (match) return
