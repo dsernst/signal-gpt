@@ -30,6 +30,8 @@ app.post('/message', (req, res) => {
   let match = false
   commands.forEach((command) => {
     if (message.startsWith(command)) {
+      if (match) return // Don't double trigger (eg /gpt and /g aliases)
+
       match = true
 
       // Run the matching command
