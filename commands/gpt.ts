@@ -2,7 +2,8 @@ import { Configuration, OpenAIApi } from 'openai'
 import 'dotenv/config'
 
 export default async (message: string) => {
-  const query = message.split('/gpt ')[1]
+  const command = message.split(' ')[0] + ' '
+  const query = message.split(command)[1]
 
   const configuration = new Configuration({ apiKey: process.env.OPENAI_KEY })
   const openai = new OpenAIApi(configuration)
