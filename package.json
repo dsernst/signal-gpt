@@ -1,0 +1,17 @@
+{
+  "name": "signal-gpt",
+  "version": "0.0.1",
+  "description": "Signal Bot to use ChatGPT",
+  "main": "index.ts",
+  "author": "David Ernst <git@dsernst.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --watch ../signal-http --watch ./*.ts index.ts"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}
