@@ -34,6 +34,6 @@ export default (message: string): string => {
     return limitedEvaluate(mathEquation).toString()
   } catch (error) {
     console.log('🔴 /math error:', error)
-    return `Error: ${error}`
+    return String(error)
   }
 }
