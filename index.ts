@@ -3,6 +3,7 @@ import fs from 'fs'
 import axios from 'axios'
 import fastify from 'fastify'
 import './logToFile.js'
+import { isRateLimited } from './src/rate-limiting'
 
 const app = fastify()
 
@@ -36,8 +37,11 @@ app.post('/message', (req, res) => {
         `/${message.toLowerCase().slice(1)}`.startsWith(command))
     ) {
       if (match) return // Don't double trigger (eg /gpt and /g aliases)
-
       match = true
+
+      // Check if this user is rate limited
+      const rateLimited = isRateLimited(sourceNumber, groupId)
+      if (rateLimited) return respond(rateLimited, sourceNumber, groupId)
 
       // Run the matching command
       import(`./commands/${command.slice(1)}`).then(async (module) => {
@@ -61,9 +65,8 @@ app.post('/message', (req, res) => {
   respond(msg, sourceNumber, groupId)
 })
 
-app.listen({ port: 9461 }, () => {
-  console.log('🟢 Signal-gpt server listening on port 9461')
-})
+const port = 9461
+app.listen({ port }, () => console.log(`🟢 GPTBot live on port ${port}`))
 
 function getCommands(): string[] {
   const path = './commands/'
