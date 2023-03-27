@@ -3,7 +3,7 @@ import fs from 'fs'
 import axios from 'axios'
 import fastify from 'fastify'
 import './logToFile.js'
-import { isRateLimited } from './src/rate-limiting'
+import { isRateLimited } from './src/rate-limiter'
 
 const app = fastify()
 
