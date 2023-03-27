@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "nodemon --watch ../signal-http --watch ./*.ts index.ts -e ts",
+    "dev": "DEBUG=true nodemon --watch ../signal-http --watch ./*.ts index.ts -e ts",
     "restart-on-crash": "DEBUG=true nodemon -x 'ts-node index.ts || touch index.ts' -e ts"
   },
   "dependencies": {

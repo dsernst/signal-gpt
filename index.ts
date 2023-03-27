@@ -2,7 +2,7 @@ import 'signal-http'
 import fs from 'fs'
 import axios from 'axios'
 import fastify from 'fastify'
-import './logToFile.js'
+import './src/logToFile.js'
 import { isRateLimited } from './src/rate-limiter'
 
 const app = fastify()
