@@ -6,12 +6,7 @@ import { useMessageCache } from '../src/recent-mgs-cache'
 const configuration = new Configuration({ apiKey: process.env.OPENAI_KEY })
 const openai = new OpenAIApi(configuration)
 
-export default async (
-  message: string,
-  sourceNumber: string,
-  sourceName: string,
-  groupId?: string
-) => {
+export default async (message: string, sourceNumber: string, sourceName: string, groupId?: string) => {
   // Split on first space
   const command = message.split(' ')[0] + ' '
   const query = message.split(command)[1]
@@ -31,7 +26,7 @@ export default async (
     return response
   } catch (error) {
     // Error handling
-    console.log('🔴 /gpt error:', error)
+    console.log('🔴 /gpt:', error)
     return JSON.stringify(error)
   }
 }
