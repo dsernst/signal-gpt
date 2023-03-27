@@ -1,2 +1,1 @@
-import gpt from './gpt'
-export default gpt
+export { default } from './gpt'

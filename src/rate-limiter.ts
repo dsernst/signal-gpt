@@ -3,8 +3,8 @@ import { customRateLimits } from './custom-rate-limits'
 
 export type RateLimits = { [groupIdOrPhoneNumber: string]: [MaxMessages: number, TimeIntervalInSeconds: number] }
 
-// Check if user exceeded thread's rate limit, using Token Bucket algorithm
-// If they have, return a custom error message, otherwise return nothing
+/** Check if user exceeded thread's rate limit, using Token Bucket algorithm.
+ * If they have, return a custom error message, otherwise return nothing  */
 export function isRateLimited(sourceNumber: string, groupId?: string): string | void {
   // Get the thread's rate limits
   const [maxMessages, timeInterval] = customRateLimits[groupId || sourceNumber] || [30, 60 * 60 * 1000]

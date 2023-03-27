@@ -1,13 +1,13 @@
 {
   "name": "signal-gpt",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "Signal Bot to use ChatGPT",
   "main": "index.ts",
   "author": "David Ernst <git@dsernst.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "DEBUG=true nodemon --watch ../signal-http --watch ./*.ts index.ts -e ts",
+    "dev": "DEBUG=true nodemon --watch ../signal-http --watch ./ -e ts",
     "restart-on-crash": "DEBUG=true nodemon -x 'ts-node index.ts || touch index.ts' -e ts"
   },
   "dependencies": {

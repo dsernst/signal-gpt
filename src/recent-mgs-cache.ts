@@ -13,7 +13,7 @@ export const useMessageCache = (cacheKey: string): AddMessage => {
   const cacheFilePath = join(dbPath, `${cacheKey}.json`)
   const messages = getRecents(cacheFilePath)
 
-  // Main function to add to the cache, and returns the current cache
+  /** Main function to add to the cache, and returns the current cache  */
   return function addMessage(message: Message): Message[] {
     messages.push(message)
 
@@ -30,7 +30,7 @@ export const useMessageCache = (cacheKey: string): AddMessage => {
   }
 }
 
-// Read recent messages from disk
+/** Read recent messages from disk */
 function getRecents(filePath: string): Message[] {
   try {
     const data = fs.readFileSync(filePath, 'utf-8')
