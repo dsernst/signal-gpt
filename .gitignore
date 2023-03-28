@@ -4,3 +4,4 @@ yarn.lock
 log.txt
 db/
 src/custom-rate-limits.ts
+cli-config/

@@ -7,7 +7,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "DEBUG=true nodemon --watch ../signal-http --watch ./ -e ts",
+    "dev": "yarn dev:build && yarn dev:run",
+    "dev:build": "docker build --target dev -t signal-gpt .",
+    "dev:kill": "docker stop $(docker ps -q)",
+    "dev:run": "docker run -v `pwd`/../signal-http:/_BOT/signal-http -v `pwd`:/_BOT/signal-gpt --rm -it signal-gpt",
+    "dev:shell": "docker exec -it $(docker ps -q) sh",
+    "start": "DEBUG=true nodemon --watch ../signal-http --watch ./ -e ts",
     "restart-on-crash": "DEBUG=true nodemon -x 'ts-node index.ts || touch index.ts' -e ts"
   },
   "dependencies": {
