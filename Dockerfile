@@ -33,6 +33,7 @@ RUN apk add --no-cache dbus-x11
 # Copy rest of application code
 COPY . ./_BOT/signal-gpt
 WORKDIR /_BOT/signal-gpt
+RUN chown -R node ../signal-gpt
 
 # Switch to less privileged user
 USER node
@@ -41,4 +42,4 @@ USER node
 RUN yarn install --production
 
 # Start the app
-CMD sh -c 'eval $(dbus-launch --sh-syntax) && yarn start'
+CMD sh -c 'eval $(dbus-launch --sh-syntax) && NODE_ENV=production yarn start'

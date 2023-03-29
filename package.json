@@ -12,6 +12,8 @@
     "dev:kill": "docker stop $(docker ps -q)",
     "dev:run": "docker run -v `pwd`/../signal-http:/_BOT/signal-http -v `pwd`:/_BOT/signal-gpt --rm -it signal-gpt",
     "dev:shell": "docker exec -it $(docker ps -q) sh",
+    "prod:build": "docker build -t signal-gpt-prod .",
+    "prod:run": "docker run --rm -it signal-gpt-prod",
     "start": "DEBUG=true nodemon --watch ../signal-http --watch ./ -e ts",
     "restart-on-crash": "DEBUG=true nodemon -x 'ts-node index.ts || touch index.ts' -e ts"
   },
@@ -22,7 +24,7 @@
     "mathjs": "^11.7.0",
     "nodemon": "^2.0.22",
     "openai": "^3.2.1",
-    "signal-http": "^0.0.1",
+    "signal-http": "^0.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2"
   },
