@@ -10,7 +10,7 @@ if (!fs.existsSync(dbPath)) fs.mkdirSync(dbPath, { recursive: true })
 type AddMessage = (message: Message) => Message[]
 
 export const useMessageCache = (cacheKey: string): AddMessage => {
-  const cacheFilePath = join(dbPath, `${cacheKey}.json`)
+  const cacheFilePath = join(dbPath, `${cacheKey.replace(/\//g, '%2F')}.json`)
   const messages = getRecents(cacheFilePath)
 
   /** Main function to add to the cache, and returns the current cache  */
