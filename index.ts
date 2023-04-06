@@ -4,6 +4,7 @@ import fastify from 'fastify'
 import './src/signal-http'
 import './src/logToFile.js'
 import { isRateLimited } from './src/rate-limiter'
+import { redactKeys } from './src/redactKeys'
 
 const app = fastify()
 
@@ -23,7 +24,7 @@ app.post('/message', (req, res) => {
     axios.post('http://localhost:9460/send', {
       to: sourceNumber,
       toGroup: groupId,
-      message,
+      message: redactKeys(message),
     })
     return !!res.send('OK')
   }
